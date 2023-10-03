@@ -1,4 +1,4 @@
-//Madrid Murillo Jose Alejandro Grupo: 1358
+#Madrid Murillo Jose Alejandro Grupo: 1358
 import random as rnd
 class almacen:
     def __init__(self,d,a,m):
