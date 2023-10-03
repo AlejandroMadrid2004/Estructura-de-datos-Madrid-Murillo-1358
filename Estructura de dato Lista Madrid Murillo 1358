@@ -1,0 +1,106 @@
+//Madrid Murillo Jose Alejandro Grupo: 1358
+import random as rnd
+class almacen:
+    def __init__(self,d,a,m):
+        self.dato=d
+        self.memoria=m
+        self.apuntador=a
+
+class listaLigada:
+    def __init__(self,n=50,ini=None):
+        self.almacenes=[]
+        self.tamanio = 0
+        for i in range(n):
+            self.almacenes+=[None]
+        if(ini==None):
+            self.ultimo=-1
+            self.ocupados=[]
+            self.inicio = None
+        else:
+            self.ultimo=rnd.randint(1, n)
+            self.ocupados=[self.ultimo]
+            self.inicio=almacen(ini,-1,self.ultimo)
+            self.almacenes[self.ultimo-1]=self.inicio
+            self.tamanio=1
+    
+    
+    def push(self,dato):
+        if(self.tamanio>=50):
+            print("Error: La lista está llena")
+        else:
+            if(self.tamanio==0):
+                self.ultimo=rnd.randint(1, 50)
+                self.ocupados=[self.ultimo]
+                self.inicio=almacen(dato,-1,self.ultimo)
+                self.almacenes[self.ultimo-1]=self.inicio
+            else:
+                prox=rnd.randint(1, 50)
+                while(prox in self.ocupados):
+                    prox=rnd.randint(1, 50)
+                self.almacenes[self.ultimo-1].apuntador = prox
+                self.ultimo = prox        
+                self.ocupados+=[self.ultimo]
+                self.almacenes[self.ultimo-1]=almacen(dato,-1,self.ultimo)
+            self.tamanio+=1
+    
+    def pop(self):
+        if(self.tamanio>1):
+            penultimo=self.ocupados[-2]
+            self.ocupados=self.ocupados[:-1]
+            dato = self.almacenes[self.ultimo-1].dato
+            self.almacenes[self.ultimo-1]=None
+            self.almacenes[penultimo-1].apuntador=-1
+            self.ultimo=penultimo
+            self.tamanio-=1
+            return dato
+        elif(self.tamanio==1):
+            self.ocupados=[]
+            dato = self.almacenes[self.ultimo-1].dato
+            self.almacenes[self.ultimo-1]=None
+            self.inicio=None
+            self.ultimo=-1
+            self.tamanio-=1
+            return dato
+        else:
+            print("Error: No hay elementos en la lista")
+            
+            
+    def remove(self, posicion)        
+        if(self.tamanio == 0):
+            print("Error: No hay elementos en la lista")
+        elif(self.inicio.dato == valor):
+            self(pop)
+        else:
+            anterior = None
+            actual = self.inicio
+        while(actual != None):
+        if(actual.dato == valor):
+            anterior.apuntador = actual.apuntador
+            del actual
+            self.tamanio -= 1
+            return 
+            anterior = actual
+            self.tamanio -= 1
+            
+    def insert(self,dato,posicion):
+        if(self.tamanio >= 50):
+            print("Error: La lista está llena")
+            else: 
+                nuevo_almacen = almacen(dato,-1,-1)
+                if(posicion == 0):
+                    nuevo_almacen.apuntador = self.ultimo
+                    self.ultimo = self.ocupados[0]
+                    self.ocupados = [nuevo_almacen.memoria]
+                    self.inicio = nuevo_almacen
+                    self.tamanio += 1
+                else:
+                    anterior = None
+                    actual = self.inicio
+                    
+                    
+     nuevo_almacen.apunador = actual.memoria
+        anterior.apunador = nuevo_almacen.memoria
+        self.ocupados.append(nuevo_almacen.memoria)
+        self.tamanio += 1
+                    
+     
